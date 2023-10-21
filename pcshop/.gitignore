@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .src/index-5.html
+src/index-5.html
+/src/index-5.html
