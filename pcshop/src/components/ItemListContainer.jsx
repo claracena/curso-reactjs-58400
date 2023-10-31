@@ -1,21 +1,26 @@
-import React from 'react';
+import { ItemCount } from "./ItemCount";
 
-export const ItemListContainer = ({ greeting }) => {
+export const ItemListContainer = ({ productos }) => {
+
     return (
-        <div className="main_content">
-            <div className="section pt-0 pb-0">
-                <div className="custom-container">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="heading_tab_header d-flex justify-content-center" style={{ borderBottom: '0' }}>
-                                <div className="heading_s2 ">
-                                    <span>{greeting}</span>
+        <div className="mt-4 staggered-animation-wrap">
+            <div className="custom-container">
+                <div className="row">
+                    <div className="col-lg-7 offset-lg-3">
+                        {productos.map((p) => {
+                            return (
+                                <div key={p.id}>
+                                    {p.name} <br />
+                                    {p.price}
+                                    <ItemCount stock={p.stock} />
+                                    <hr />
                                 </div>
-                            </div>
-                        </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>
         </div>
     );
+
 };

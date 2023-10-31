@@ -7,9 +7,10 @@ export default function MainMenuSearch() {
                         <div className="custom_select">
                             <select className="first_null not_chosen">
                                 <option value="">Categor&iacute;as</option>
-                                <option value="Partes">Partes</option>
+                                <option value="Computadoras">Computadoras</option>
+                                <option value="Celulares">Celulares y Tablets</option>
+                                <option value="Componentes">Componentes</option>
                                 <option value="Accesorios">Accesorios</option>
-                                <option value="Monitores">Monitores</option>
                             </select>
                         </div>
                     </div>
