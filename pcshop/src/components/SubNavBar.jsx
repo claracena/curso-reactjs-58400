@@ -1,7 +1,52 @@
-export const SubNavBar = () => {
+export const SubNavBar = ({ categorias, subcategorias }) => {
+
+    function link_with_sub(catIndex, catId, catIcon, catName) {
+
+        let subCat = subcategorias.filter(cat => cat.catId == catId);
+
+        return (
+            <li className="dropdown dropdown-mega-menu" key={catIndex}>
+                <a className="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown">
+                    <i className={catIcon}></i> <span>{catName}</span>
+                </a>
+                <div className="dropdown-menu">
+                    <ul className="mega-menu d-lg-flex grey-border-custom">
+                        <li className="mega-menu-col col-lg-4">
+                            <ul className="d-lg-flex">
+                                <li className="mega-menu-col col-lg-4">
+                                    <ul>
+                                    {subCat.map((item, index) => {
+                                        return (
+                                            <li key={index}>
+                                                <a className="dropdown-item nav-link nav_item" href="/category">
+                                                    {item.subCatName}
+                                                </a>
+                                            </li>
+                                        )
+                                    })}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        )
+    }
+
+    function link_no_sub(catIndex, catId, catIcon, catName) {
+        return (
+            <li key={catIndex}>
+                <a className="dropdown-item nav-link nav_item" href="#">
+                <i className={catIcon}></i> <span>{catName}</span>
+                </a>
+            </li>
+        )
+    }
+
     return (
         <div className="bottom_header dark_skin main_menu_uppercase border-top border-bottom">
-            <div className="custom-container">
+            <div className="container">
                 <div className="row">
                     <div className="col-lg-3 col-md-4 col-sm-6 col-3">
                         <div className="categories_wrap">
@@ -16,392 +61,11 @@ export const SubNavBar = () => {
                             </button>
                             <div id="navCatContent" className="nav_cat navbar collapse">
                                 <ul>
-                                    <li className="dropdown dropdown-mega-menu">
-                                        <a className="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown">
-                                            <i className="flaticon-tv"></i> <span>Computadoras</span>
-                                        </a>
-                                        <div className="dropdown-menu">
-                                            <ul className="mega-menu d-lg-flex grey-border-custom">
-                                                <li className="mega-menu-col col-lg-7">
-                                                    <ul className="d-lg-flex">
-                                                        <li className="mega-menu-col col-lg-6">
-                                                            <ul>
-                                                                <li className="dropdown-header">Gamer PCs</li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        HP OMEN
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Alienware
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        ASUS
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        CORSAIR
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        MSI
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Lenovo
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Acer
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        LG
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                        <li className="mega-menu-col col-lg-6">
-                                                            <ul>
-                                                                <li className="dropdown-header">Port&aacute;tiles</li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Alienware
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Dell
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        ASUS
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        MSI
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Lenovo
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Apple
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Razer
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Acer
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li className="mega-menu-col col-lg-5">
-                                                    <div className="header-banner2">
-                                                        <img src="https://picsum.photos/id/366/370/200?blur=2" alt="menu_banner1" />
-                                                        {/* <img src="./src/assets/images/menu_banner1.jpg" alt="menu_banner1" /> */}
-                                                        <div className="banne_info white-content">
-                                                            <h6>10% Descuento</h6>
-                                                            <h4>Nuevos Modelos</h4>
-                                                            <a href="#">Comprar Ahora</a>
-                                                        </div>
-                                                    </div>
-                                                    <div className="header-banner2">
-                                                        <img src="https://picsum.photos/id/0/370/200?blur=2" alt="menu_banner2" />
-                                                        <div className="banne_info white-content">
-                                                            <h6>15% Descuento</h6>
-                                                            <h4>En Laptops Seleccionadas</h4>
-                                                            <a href="#">Comprar Ahora</a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li className="dropdown dropdown-mega-menu">
-                                        <a className="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown">
-                                            <i className="flaticon-responsive"></i> <span>Celulares & Tablets</span>
-                                        </a>
-                                        <div className="dropdown-menu">
-                                            <ul className="mega-menu d-lg-flex grey-border-custom">
-                                                <li className="mega-menu-col col-lg-7">
-                                                    <ul className="d-lg-flex">
-                                                        <li className="mega-menu-col col-lg-6">
-                                                            <ul>
-                                                                <li className="dropdown-header">Celulares</li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Apple
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Samsung
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Google Pixel
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Motorola
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Huawei
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Nokia
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Sony
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                        <li className="mega-menu-col col-lg-6">
-                                                            <ul>
-                                                                <li className="dropdown-header">Tablets</li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Apple
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Samsung
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        LG
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Microsoft
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Asus
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Acer
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a className="dropdown-item nav-link nav_item" href="#">
-                                                                        Wacom
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li className="mega-menu-col col-lg-5">
-                                                    <div className="header-banner2">
-                                                        <img src="https://picsum.photos/id/160/310/300?blur=2" alt="menu_banner1" />
-                                                        {/* <img src="./src/assets/images/menu_banner1.jpg" alt="menu_banner1" /> */}
-                                                        <div className="banne_info white-content">
-                                                            <h6>10% Descuento</h6>
-                                                            <h4>Nuevos Modelos</h4>
-                                                            <a href="#">Comprar Ahora</a>
-                                                        </div>
-                                                    </div>
-                                                    {/* <div className="header-banner2">
-                                                    <a href="#"><img src="https://picsum.photos/id/160/310/300" alt="menu_banner5" /></a>
-                                                </div> */}
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li className="dropdown dropdown-mega-menu">
-                                        <a className="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown">
-                                            <i className="flaticon-mouse"></i> <span>Componentes</span>
-                                        </a>
-                                        <div className="dropdown-menu">
-                                            <ul className="mega-menu d-lg-flex grey-border-custom">
-                                                <li className="mega-menu-col col-lg-4">
-                                                    <ul>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Motherboards
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Procesadores
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Memoria RAM
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Discos R&iacute;gidos
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li className="mega-menu-col col-lg-4">
-                                                    <ul>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Discos S&oacute;lidos
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Discos m.2
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Placas de Video
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Gabinetes
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li className="mega-menu-col col-lg-4">
-                                                    <ul>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Fuentes
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Teclados
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Mouse
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Monitores
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    {/* <li className="dropdown dropdown-mega-menu">
-                                        <a className="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown">
-                                            <i className="flaticon-headphones"></i> <span>Accessorios</span>
-                                        </a>
-                                        <div className="dropdown-menu">
-                                            <ul className="mega-menu d-lg-flex grey-border-custom">
-                                                <li className="mega-menu-col col-lg-4">
-                                                    <ul>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Auriculares
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Mouse Pads
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li className="mega-menu-col col-lg-4">
-                                                    <ul>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Hubs
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Impresoras
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li className="mega-menu-col col-lg-4">
-                                                    <ul>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                RGB
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a className="dropdown-item nav-link nav_item" href="#">
-                                                                Cables
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li> */}
-                                    <li>
-                                        <a className="dropdown-item nav-link nav_item" href="#">
-                                            <i className="flaticon-headphones"></i> <span>Auriculares</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item nav-link nav_item" href="#">
-                                        <i className="linearicons-mouse"></i> <span>Mouse Pads</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item nav-link nav_item" href="#">
-                                            <i className="linearicons-spotlights"></i> <span>Iluminaci&oacute;n</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item nav-link nav_item" href="#">
-                                            <i className="flaticon-printer"></i> <span>Impresoras</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item nav-link nav_item" href="#">
-                                            <i className="linearicons-network"></i> <span>Conectividad</span>
-                                        </a>
-                                    </li>
+                                    {categorias.map((item, index) => {
+                                        return (
+                                            item.catHasChild ? link_with_sub(index, item.catId, item.catIcon, item.catName) : link_no_sub(index, item.catId, item.catIcon, item.catName)
+                                        )
+                                    })}
                                 </ul>
                             </div>
                         </div>
@@ -424,7 +88,7 @@ export const SubNavBar = () => {
                             <div className="collapse navbar-collapse mobile_side_menu" id="navbarSidetoggle">
                                 <ul className="navbar-nav">
                                     <li>
-                                        <a className="nav-link nav_item active" href="#">
+                                        <a className="nav-link nav_item active" href="/">
                                             Inicio
                                         </a>
                                     </li>

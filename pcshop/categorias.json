@@ -1,0 +1,39 @@
+[
+    {
+        "catId": 1,
+        "catName": "Componentes",
+        "catIcon": "linearicons-screwdriver",
+        "catHasChild": true
+    },
+    {
+        "catId": 2,
+        "catName": "Gamer PCs",
+        "catIcon": "flaticon-tv",
+        "catHasChild": false
+    },
+    {
+        "catId": 3,
+        "catName": "Laptops",
+        "catIcon": "linearicons-laptop",
+        "catHasChild": false
+    },
+    {
+        "catId": 4,
+        "catName": "Celulares",
+        "catIcon": "linearicons-smartphone",
+        "catHasChild": false
+    },
+    {
+        "catId": 5,
+        "catName": "Tablets",
+        "catIcon": "linearicons-tablet",
+        "catHasChild": false
+    },
+    {
+        "catId": 6,
+        "catName": "Impresoras",
+        "catIcon": "flaticon-printer",
+        "catHasChild": false
+    }
+
+]

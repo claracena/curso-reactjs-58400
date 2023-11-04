@@ -5,7 +5,7 @@ import MainMenuSearch from "./MainMenuSearch"
 export const NavBar = () => {
   return (
     <div className="middle-header dark_skin">
-        <div className="custom-container">
+        <div className="container">
             <div className="nav_block">
                 <Brand />
                 <MainMenuSearch />
