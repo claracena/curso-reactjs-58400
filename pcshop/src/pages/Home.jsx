@@ -1,14 +1,12 @@
 import { NavBar } from "../components/NavBar";
 import { SubNavBar } from "../components/SubNavBar";
 
-export const Home = ({ categorias, subcategorias }) => {
+export const Home = ({ categorias }) => {
 
     return (
         <header className="header_wrap">
-            <NavBar />
-            {/* if ({ loc } == 'root') { <SubNavBar /> } */}
-            {/* {loc == 'root' ? <SubNavBar /> : null} */}
-            <SubNavBar categorias={categorias} subcategorias={subcategorias} />
+            <NavBar categorias={categorias} />
+            <SubNavBar categorias={categorias} />
         </header>
     )
 };

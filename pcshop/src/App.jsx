@@ -12,7 +12,7 @@ class App extends React.Component {
     state = { productos: [], productos_cargados: false, categorias: [], categorias_cargadas: false, subcategorias: [], subcategorias_cargadas: false };
 
     getProductos = () => {
-        fetch('https://raw.githubusercontent.com/claracena/files/main/productos.json', {})
+        fetch('https://raw.githubusercontent.com/claracena/files/main/productos.json?v=1', {})
             .then(data => data.json())
             .then(data => {
                 this.setState({ productos: data, productos_cargados: true });
@@ -23,7 +23,8 @@ class App extends React.Component {
     obtenerProductos = this.getProductos();
 
     getCategorias = () => {
-        fetch('https://raw.githubusercontent.com/claracena/files/main/categorias.json', {})
+        // fetch('https://raw.githubusercontent.com/claracena/files/main/categorias.json?v=1', {})
+        fetch('../categorias.json?v=1', {})
             .then(data => data.json())
             .then(data => {
                 this.setState({ categorias: data, categorias_cargadas: true });
@@ -33,16 +34,17 @@ class App extends React.Component {
 
     obtenerCategorias = this.getCategorias();
 
-    getSubCategorias = () => {
-        fetch('https://raw.githubusercontent.com/claracena/files/main/subcategorias.json', {})
-            .then(data => data.json())
-            .then(data => {
-                this.setState({ subcategorias: data, subcategorias_cargadas: true });
-            })
-            .catch((reason) => console.log('Msg: ' + reason));
-    };
+    // getSubCategorias = () => {
+    //     // fetch('https://raw.githubusercontent.com/claracena/files/main/subcategorias.json?v=1', {})
+    //     fetch('../subcategorias.json?v=1', {})
+    //         .then(data => data.json())
+    //         .then(data => {
+    //             this.setState({ subcategorias: data, subcategorias_cargadas: true });
+    //         })
+    //         .catch((reason) => console.log('Msg: ' + reason));
+    // };
 
-    obtenerSubCategorias = this.getSubCategorias();
+    // obtenerSubCategorias = this.getSubCategorias();
 
     render() {
         // let { productos, cargados } = this.state;
@@ -66,9 +68,10 @@ class App extends React.Component {
             <>
                 <Router>
                     <Routes>
-                        {["/", "/index.html"].map((path, index) => <Route path={path} element={<><Home categorias={this.state.categorias} subcategorias={this.state.subcategorias} /><WelcomePage /></>} key={index} />)}
-                        <Route path='/category' element={<><SecondHome /><Category /></>} />
-                        <Route path='/product' element={<Product />} />
+                        {["/", "/index.html"].map((path, index) => <Route path={path} element={<><Home categorias={this.state.categorias} /><WelcomePage /></>} key={index} />)}
+                        <Route path='/category' element={<><SecondHome categorias={this.state.categorias} /><Category /></>} />
+                        <Route path='/category/:catSeo' element={<><SecondHome categorias={this.state.categorias} /><Category /></>} />
+                        <Route path='/product' element={<><SecondHome /><Product /></>} />
                     </Routes>
                 </Router>
             </>

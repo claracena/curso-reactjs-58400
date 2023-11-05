@@ -1,6 +1,8 @@
+import { useParams } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 
 export const Category = () => {
+    const { catSeo } = useParams();
     return (
         <>
             <div className="breadcrumb_section bg_gray page-title-mini">
@@ -26,7 +28,7 @@ export const Category = () => {
                 <div className="custom-container">
                     <div className="row">
                         <div className="col-lg-7 offset-lg-3">
-                            asdasdasd
+                            {catSeo == "laptops" ? 'asd' : 'qweqwqwe'}
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-export default function MainMenuSearch() {
+export default function MainMenuSearch({ categorias }) {
     return (
         <div className="product_search_form radius_input search_form_btn">
             <form id="frmBusqueda" action="" method="GET">
@@ -7,14 +7,15 @@ export default function MainMenuSearch() {
                         <div className="custom_select">
                             <select className="first_null not_chosen">
                                 <option value="">Categor&iacute;as</option>
-                                <option value="Computadoras">Computadoras</option>
-                                <option value="Celulares">Celulares y Tablets</option>
-                                <option value="Componentes">Componentes</option>
-                                <option value="Accesorios">Accesorios</option>
+                                {categorias.map((item, index) => {
+                                    return (
+                                        <option value={item.catSeo} key={index}>{item.catName}</option>
+                                    )
+                                })}
                             </select>
                         </div>
                     </div>
-                    <input className="form-control" placeholder="Buscar Producto..." required="" type="text" />
+                    <input className="form-control" placeholder="Producto..." required="" type="text" />
                     <button type="submit" className="search_btn3">
                         Buscar
                     </button>

@@ -1,52 +1,52 @@
 [
     {
         "catId": 1,
-        "subCatiD": 1,
+        "subCatId": 101,
         "subCatName": "Motherboards"
     },
     {
         "catId": 1,
-        "subCatiD": 2,
+        "subCatId": 102,
         "subCatName": "Procesadores"
     },
     {
         "catId": 1,
-        "subCatiD": 3,
+        "subCatId": 103,
         "subCatName": "Memoria RAM"
     },
     {
         "catId": 1,
-        "subCatiD": 4,
+        "subCatId": 104,
         "subCatName": "Discos"
     },
     {
         "catId": 1,
-        "subCatiD": 5,
+        "subCatId": 105,
         "subCatName": "Placas De Video"
     },
     {
         "catId": 1,
-        "subCatiD": 6,
+        "subCatId": 106,
         "subCatName": "Gabinetes"
     },
     {
         "catId": 1,
-        "subCatiD": 7,
+        "subCatId": 107,
         "subCatName": "Fuentes"
     },
     {
         "catId": 1,
-        "subCatiD": 8,
+        "subCatId": 108,
         "subCatName": "Teclados"
     },
     {
         "catId": 1,
-        "subCatiD": 9,
+        "subCatId": 109,
         "subCatName": "Mouse"
     },
     {
         "catId": 1,
-        "subCatiD": 10,
+        "subCatId": 110,
         "subCatName": "Monitores"
     }
 ]

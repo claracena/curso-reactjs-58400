@@ -1,7 +1,7 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
-export default function Menu() {
+export default function Menu({ categorias }) {
+    const { catSeo } = useParams();
     return (
         <>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false">
@@ -10,484 +10,61 @@ export default function Menu() {
             <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul className="navbar-nav">
                     <li>
-                        <NavLink to={{pathname: "/"}} className={({ isActive }) => isActive ? "nav-link nav_item active" : "nav-link nav_item"}>
-                        Inicio
-                        </NavLink>
-                        {/* <a className="nav-link nav_item" href="/">
+                        <NavLink to={{ pathname: '/' }} className={({ isActive }) => (isActive ? 'nav-link nav_item active' : 'nav-link nav_item')}>
                             Inicio
-                        </a> */}
+                        </NavLink>
                     </li>
                     <li className="dropdown">
-                        <NavLink to="/category" className={({ isActive }) => isActive ? "dropdown-toggle nav-link active" : "dropdown-toggle nav-link"}>
+                        <NavLink
+                            to="/category"
+                            className={({ isActive }) => (isActive ? 'dropdown-toggle nav-link active' : 'dropdown-toggle nav-link')}
+                            data-toggle="dropdown">
                             Categor&iacute;as
                         </NavLink>
-                        {/* <a className="dropdown-toggle nav-link active" href="#" data-toggle="dropdown">
-                            Categor&iacute;as
-                        </a> */}
                         <div className="dropdown-menu">
                             <ul>
-                                <li>
-                                    <NavLink to="/category" className={({ isActive }) => isActive ? "dropdown-item nav-link nav_item active" : "dropdown-item nav-link nav_item"}>
-                                        Gamer PCs
-                                    </NavLink>
-                                    {/* <Link className="dropdown-item nav-link nav_item active" to="/category">Gamer PCs</Link> */}
-                                    {/* <a className="dropdown-item nav-link nav_item active" href="/category?catid=1">
-                                        Gamer PCs
-                                    </a> */}
-                                </li>
-                                <li>
-                                    <a className="dropdown-item nav-link nav_item" href="contact.html">
-                                        Contact Us
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item nav-link nav_item" href="faq.html">
-                                        Faq
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item nav-link nav_item" href="404.html">
-                                        404 Error Page
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item nav-link nav_item" href="login.html">
-                                        Login
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item nav-link nav_item" href="signup.html">
-                                        Register
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item nav-link nav_item" href="term-condition.html">
-                                        Terms and Conditions
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="dropdown dropdown-mega-menu">
-                        <a className="dropdown-toggle nav-link" href="#" data-toggle="dropdown">
-                            Products
-                        </a>
-                        <div className="dropdown-menu">
-                            <ul className="mega-menu d-lg-flex">
-                                <li className="mega-menu-col col-lg-3">
-                                    <ul>
-                                        <li className="dropdown-header">Woman's</li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-three-columns.html">
-                                                Vestibulum sed
-                                            </a>
+                                {categorias.map((item, index) => {
+                                    return (
+                                        <li key={index}>
+                                            <NavLink
+                                                to={`/category/${item.catSeo}`}
+                                                className={({ isActive }) =>
+                                                    isActive ? 'dropdown-item nav-link nav_item active' : 'dropdown-item nav-link nav_item'
+                                                }>
+                                                {item.catName}
+                                            </NavLink>
                                         </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-four-columns.html">
-                                                Donec porttitor
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-grid-view.html">
-                                                Donec vitae facilisis
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-list-view.html">
-                                                Curabitur tempus
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-left-sidebar.html">
-                                                Vivamus in tortor
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li className="mega-menu-col col-lg-3">
-                                    <ul>
-                                        <li className="dropdown-header">Men's</li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-cart.html">
-                                                Donec vitae ante ante
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="checkout.html">
-                                                Etiam ac rutrum
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="wishlist.html">
-                                                Quisque condimentum
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="compare.html">
-                                                Curabitur laoreet
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="cart-empty.html">
-                                                Vivamus in tortor
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li className="mega-menu-col col-lg-3">
-                                    <ul>
-                                        <li className="dropdown-header">Kid's</li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-product-detail.html">
-                                                Donec vitae facilisis
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-product-detail-left-sidebar.html">
-                                                Quisque condimentum
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-product-detail-right-sidebar.html">
-                                                Etiam ac rutrum
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-product-detail-thumbnails-left.html">
-                                                Donec vitae ante ante
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-product-detail-accordion-style.html">
-                                                Donec porttitor
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li className="mega-menu-col col-lg-3">
-                                    <ul>
-                                        <li className="dropdown-header">Accessories</li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-product-detail.html">
-                                                Curabitur tempus
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-product-detail-left-sidebar.html">
-                                                Quisque condimentum
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-product-detail-right-sidebar.html">
-                                                Vivamus in tortor
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-product-detail-thumbnails-left.html">
-                                                Donec vitae facilisis
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link nav_item" href="shop-product-detail-accordion-style.html">
-                                                Donec porttitor
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <div className="d-lg-flex menu_banners">
-                                <div className="col-sm-4">
-                                    <div className="header-banner">
-                                        <img src="assets/images/menu_banner1.jpg" alt="menu_banner1" />
-                                        <div className="banne_info">
-                                            <h6>10% Off</h6>
-                                            <h4>New Arrival</h4>
-                                            <a href="#">Shop now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-sm-4">
-                                    <div className="header-banner">
-                                        <img src="assets/images/menu_banner2.jpg" alt="menu_banner2" />
-                                        <div className="banne_info">
-                                            <h6>15% Off</h6>
-                                            <h4>Men's Fashion</h4>
-                                            <a href="#">Shop now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-sm-4">
-                                    <div className="header-banner">
-                                        <img src="assets/images/menu_banner3.jpg" alt="menu_banner3" />
-                                        <div className="banne_info">
-                                            <h6>23% Off</h6>
-                                            <h4>Kids Fashion</h4>
-                                            <a href="#">Shop now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li className="dropdown">
-                        <a className="dropdown-toggle nav-link" href="#" data-toggle="dropdown">
-                            Blog
-                        </a>
-                        <div className="dropdown-menu dropdown-reverse">
-                            <ul>
-                                <li>
-                                    <a className="dropdown-item menu-link dropdown-toggler" href="#">
-                                        Grids
-                                    </a>
-                                    <div className="dropdown-menu">
-                                        <ul>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-three-columns.html">
-                                                    3 columns
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-four-columns.html">
-                                                    4 columns
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-left-sidebar.html">
-                                                    Left Sidebar
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-right-sidebar.html">
-                                                    right Sidebar
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-standard-left-sidebar.html">
-                                                    Standard Left Sidebar
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-standard-right-sidebar.html">
-                                                    Standard right Sidebar
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item menu-link dropdown-toggler" href="#">
-                                        Masonry
-                                    </a>
-                                    <div className="dropdown-menu">
-                                        <ul>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-masonry-three-columns.html">
-                                                    3 columns
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-masonry-four-columns.html">
-                                                    4 columns
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-masonry-left-sidebar.html">
-                                                    Left Sidebar
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-masonry-right-sidebar.html">
-                                                    right Sidebar
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item menu-link dropdown-toggler" href="#">
-                                        Single Post
-                                    </a>
-                                    <div className="dropdown-menu">
-                                        <ul>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-single.html">
-                                                    Default
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-single-left-sidebar.html">
-                                                    left sidebar
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-single-slider.html">
-                                                    slider post
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-single-video.html">
-                                                    video post
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-single-audio.html">
-                                                    audio post
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item menu-link dropdown-toggler" href="#">
-                                        List
-                                    </a>
-                                    <div className="dropdown-menu">
-                                        <ul>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-list-left-sidebar.html">
-                                                    left sidebar
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a className="dropdown-item nav-link nav_item" href="blog-list-right-sidebar.html">
-                                                    right sidebar
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li className="dropdown dropdown-mega-menu">
-                        <a className="dropdown-toggle nav-link active" href="#" data-toggle="dropdown">
-                            Shop
-                        </a>
-                        <div className="dropdown-menu">
-                            <ul className="mega-menu d-lg-flex">
-                                <li className="mega-menu-col col-lg-9">
-                                    <ul className="d-lg-flex">
-                                        <li className="mega-menu-col col-lg-4">
-                                            <ul>
-                                                <li className="dropdown-header">Shop Page Layout</li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item active" href="shop-list.html">
-                                                        shop List view
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="shop-list-left-sidebar.html">
-                                                        shop List Left Sidebar
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="shop-list-right-sidebar.html">
-                                                        shop List Right Sidebar
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="shop-left-sidebar.html">
-                                                        Left Sidebar
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="shop-right-sidebar.html">
-                                                        Right Sidebar
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="shop-load-more.html">
-                                                        Shop Load More
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li className="mega-menu-col col-lg-4">
-                                            <ul>
-                                                <li className="dropdown-header">Other Pages</li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="shop-cart.html">
-                                                        Cart
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="checkout.html">
-                                                        Checkout
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="wishlist.html">
-                                                        Wishlist
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="compare.html">
-                                                        compare
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="order-completed.html">
-                                                        Order Completed
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li className="mega-menu-col col-lg-4">
-                                            <ul>
-                                                <li className="dropdown-header">Product Pages</li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="shop-product-detail.html">
-                                                        Default
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="shop-product-detail-left-sidebar.html">
-                                                        Left Sidebar
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="shop-product-detail-right-sidebar.html">
-                                                        Right Sidebar
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="dropdown-item nav-link nav_item" href="shop-product-detail-thumbnails-left.html">
-                                                        Thumbnails Left
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li className="mega-menu-col col-lg-3">
-                                    <div className="header_banner">
-                                        <div className="header_banner_content">
-                                            <div className="shop_banner">
-                                                <div className="banner_img overlay_bg_40">
-                                                    <img src="assets/images/shop_banner.jpg" alt="shop_banner" />
-                                                </div>
-                                                <div className="shop_bn_content">
-                                                    <h5 className="text-uppercase shop_subtitle">New Collection</h5>
-                                                    <h3 className="text-uppercase shop_title">Sale 30% Off</h3>
-                                                    <a href="#" className="btn btn-white rounded-0 btn-sm text-uppercase">
-                                                        Shop Now
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                    );
+                                })}
                             </ul>
                         </div>
                     </li>
                     <li>
-                        <a className="nav-link nav_item" href="contact.html">
-                            Contact Us
-                        </a>
+                        <NavLink
+                            to={`/who-we-are`}
+                            className={({ isActive }) =>
+                                isActive ? 'nav-link nav_item active' : 'nav-link nav_item'
+                            }>
+                            Quienes Somos
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to={`/contact-us`}
+                            className={({ isActive }) =>
+                                isActive ? 'nav-link nav_item active' : 'nav-link nav_item'
+                            }>
+                            Cont&aacute;ctenos
+                        </NavLink>
                     </li>
                 </ul>
             </div>
             <ul className="navbar-nav attr-nav align-items-center">
+                <li>
+                    <a href="#" className="nav-link">
+                        <i className="linearicons-user"></i>
+                    </a>
+                </li>
                 <li>
                     <a href="#" className="nav-link search_trigger">
                         <i className="linearicons-magnifier"></i>
@@ -517,7 +94,7 @@ export default function Menu() {
                                     <i className="ion-close"></i>
                                 </a>
                                 <a href="#">
-                                    <img src="assets/images/cart_thamb1.jpg" alt="cart_thumb1" />
+                                    <img src="../src/assets/images/cart_thamb1.jpg" alt="cart_thumb1" />
                                     Variable product 001
                                 </a>
                                 <span className="cart_quantity">
@@ -535,7 +112,7 @@ export default function Menu() {
                                     <i className="ion-close"></i>
                                 </a>
                                 <a href="#">
-                                    <img src="assets/images/cart_thamb2.jpg" alt="cart_thumb2" />
+                                    <img src="../src/assets/images/cart_thamb2.jpg" alt="cart_thumb2" />
                                     Ornare sed consequat
                                 </a>
                                 <span className="cart_quantity">
@@ -560,10 +137,10 @@ export default function Menu() {
                             </p>
                             <p className="cart_buttons">
                                 <a href="#" className="btn btn-fill-line view-cart">
-                                    View Cart
+                                    Ver Carrito
                                 </a>
                                 <a href="#" className="btn btn-fill-out checkout">
-                                    Checkout
+                                    Comprar
                                 </a>
                             </p>
                         </div>
