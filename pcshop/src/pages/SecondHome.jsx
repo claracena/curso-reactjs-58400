@@ -1,5 +1,4 @@
 import { SecondNavBar } from "../components/SecondNavBar";
-import { SubNavBar } from "../components/SubNavBar";
 
 export const SecondHome = ({ categorias }) => {
     return (

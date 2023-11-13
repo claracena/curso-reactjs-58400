@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { NavBar } from "../components/NavBar";
 
 export const Category = ({ categorias }) => {
     const { cat_seo } = useParams();
@@ -11,9 +10,7 @@ export const Category = ({ categorias }) => {
         );
     }
     
-    // if (cat_seo) {
-        const categoria = filter(categorias, cat_seo, 'catSeo')[0];
-    // }
+    const categoria = filter(categorias, cat_seo, 'catSeo')[0];
 
     return (
         <>
@@ -35,16 +32,6 @@ export const Category = ({ categorias }) => {
                     </div>
                 </div>
             </div>
-            
-            {/* <div className="mt-4 staggered-animation-wrap">
-                <div className="custom-container">
-                    <div className="row">
-                        <div className="col-lg-7 offset-lg-3">
-                            {cat_seo == "laptops" ? 'asd' : 'qweqwqwe'}
-                        </div>
-                    </div>
-                </div>
-            </div> */}
         </>
     )
 };

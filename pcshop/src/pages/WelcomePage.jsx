@@ -1,4 +1,3 @@
-import { NavBar } from "../components/NavBar";
 import Image_banner_1 from "../assets/images/banner_clac_01.jpg";
 import Image_banner_2 from "../assets/images/banner_clac_02.jpg";
 import Image_banner_3 from "../assets/images/banner_clac_03.jpg";

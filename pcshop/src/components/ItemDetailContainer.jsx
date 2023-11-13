@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ItemCount } from './ItemCount';
 
 export const ItemDetailContainer = ({ productos }) => {
@@ -16,8 +16,6 @@ export const ItemDetailContainer = ({ productos }) => {
     const { id } = useParams();
 
     const resultado = Object.values(productos).find( (obj) => { return obj.id == id })
-
-    // console.log(resultado['name'])
     
     if (loading) { return null }
     

@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Item = ({ item, index }) => {
   return (
     <div className="col-lg-3 col-md-4 col-6" key={index}>

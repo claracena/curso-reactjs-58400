@@ -1,5 +1,4 @@
 import React from 'react'
-import Item from './Item';
 
 const ItemList = ({ cat_id, productos }) => {
 
@@ -22,7 +21,6 @@ const ItemList = ({ cat_id, productos }) => {
                     <div className="row shop_container list">
                         {lista_productos.map((item, index) => {
                             return (
-                            // <Item item={item} index={index} />
                             <div className="col-lg-3 col-md-4 col-6" key={index}>
                                 <div className="product">
                                     {item.sale ? (<span className="pr_flash bg-danger">Oferta</span>) : ""}
