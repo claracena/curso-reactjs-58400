@@ -59,7 +59,7 @@ export default function Menu({ categorias }) {
                     </li>
                 </ul>
             </div>
-            <ul className="navbar-nav attr-nav align-items-center">
+            {/* <ul className="navbar-nav attr-nav align-items-center">
                 <li>
                     <a href="#" className="nav-link">
                         <i className="linearicons-user"></i>
@@ -146,7 +146,7 @@ export default function Menu({ categorias }) {
                         </div>
                     </div>
                 </li>
-            </ul>
+            </ul> */}
         </>
     );
 }

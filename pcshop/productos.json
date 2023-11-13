@@ -1,8 +1,7 @@
 [
     {
         "id": 1,
-        "cat": 1,
-        "subcat": 1,
+        "cat": 2,
         "name": "HP OMEN 40L Gaming Desktop",
         "description":
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies est ante, in interdum sapien iaculis non. Vivamus congue orci at lorem rutrum facilisis. Nullam volutpat, lacus ac semper rhoncus, elit ipsum ornare mi, in tempor urna tellus sed sapien. Nulla molestie eget enim vel sagittis",
@@ -12,13 +11,17 @@
         "sale": false,
         "new": true,
         "price": 1149.99,
-        "deals": ["Free 1-month Xbox Game Pass Ultimate & 1 more", "30% off Logitech accessory with hardware", "1 year guarantee"],
+        "realprice": 1149.99,
+        "deals": [
+            ["linearicons-shield-check", "Free 1-month Xbox Game Pass Ultimate & 1 more"],
+            ["linearicons-sync", "30% off Logitech accessory with hardware"],
+            ["linearicons-bag-dollar", "1 year guarantee"]
+        ],
         "tags": ["hp", "gaming", "desktop", "amd"]
     },
     {
         "id": 2,
-        "cat": 1,
-        "subcat": 1,
+        "cat": 2,
         "name": "HP OMEN 25L Gaming Desktop",
         "description":
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultricies est ante, in interdum sapien iaculis non. Vivamus congue orci at lorem rutrum facilisis. Nullam volutpat, lacus ac semper rhoncus, elit ipsum ornare mi, in tempor urna tellus sed sapien. Nulla molestie eget enim vel sagittis",
@@ -28,7 +31,12 @@
         "sale": true,
         "new": false,
         "price": 549.99,
-        "deals": ["Free 1-month Xbox Game Pass Ultimate & 1 more", "30% off Logitech accessory with hardware", "1 year guarantee"],
+        "realprice": 699.99,
+        "deals": [
+            ["linearicons-shield-check", "Free 1-month Xbox Game Pass Ultimate & 1 more"],
+            ["linearicons-sync", "30% off Logitech accessory with hardware"],
+            ["linearicons-bag-dollar", "1 year guarantee"]
+        ],
         "tags": ["hp", "gaming", "desktop", "nvidia"]
     }
 ]

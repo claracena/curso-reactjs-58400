@@ -8,12 +8,12 @@ export default function CartWidget() {
                 <ul className="cart_list">
                     <li>
                         <a href="#" className="item_remove"><i className="ion-close"></i></a>
-                        <a href="#"><img src="src/assets/images/cart_thamb1.jpg" alt="cart_thumb1" />Producto 01</a>
+                        <a href="#"><img src="../src/assets/images/cart_thamb1.jpg" alt="cart_thumb1" />Producto 01</a>
                         <span className="cart_quantity"> 1 x <span className="cart_amount"> <span className="price_symbol">$</span></span>78.00</span>
                     </li>
                     <li>
                         <a href="#" className="item_remove"><i className="ion-close"></i></a>
-                        <a href="#"><img src="src/assets/images/cart_thamb2.jpg" alt="cart_thumb2"/ >Producto 02</a>
+                        <a href="#"><img src="../src/assets/images/cart_thamb2.jpg" alt="cart_thumb2"/ >Producto 02</a>
                         <span className="cart_quantity"> 1 x <span className="cart_amount"> <span className="price_symbol">$</span></span>81.00</span>
                     </li>
                 </ul>

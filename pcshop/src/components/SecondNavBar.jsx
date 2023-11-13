@@ -9,6 +9,7 @@ export const SecondNavBar = ({ categorias }) => {
             <nav className="navbar navbar-expand-lg"> 
                 <Brand />
                 <Menu categorias={categorias} />
+                <CartWidget />
             </nav>
         </div>
     </div>

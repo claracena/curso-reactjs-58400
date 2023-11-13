@@ -5,8 +5,8 @@ export default function MainMenuSearch({ categorias }) {
                 <div className="input-group">
                     <div className="input-group-prepend">
                         <div className="custom_select">
-                            <select className="first_null not_chosen">
-                                <option value="">Categor&iacute;as</option>
+                            <select className="first_null not_chosen" id="cat_select" onChange={(e)=>changeCatSelect(e)}>
+                                <option value="/">Categor&iacute;as</option>
                                 {categorias.map((item, index) => {
                                     return (
                                         <option value={item.catSeo} key={index}>{item.catName}</option>

@@ -1,8 +1,20 @@
 import { useParams } from "react-router-dom";
 import { NavBar } from "../components/NavBar";
 
-export const Category = () => {
-    const { catSeo } = useParams();
+export const Category = ({ categorias }) => {
+    const { cat_seo } = useParams();
+
+    function filter(array, value, key) {
+        return array.filter(key
+            ? a => a[key] === value
+            : a => Object.keys(a).some(k => a[k] === value)
+        );
+    }
+    
+    // if (cat_seo) {
+        const categoria = filter(categorias, cat_seo, 'catSeo')[0];
+    // }
+
     return (
         <>
             <div className="breadcrumb_section bg_gray page-title-mini">
@@ -10,7 +22,7 @@ export const Category = () => {
                     <div className="row align-items-center">
                         <div className="col-md-6">
                             <div className="page-title">
-                                <h1>Shop List</h1>
+                                <h1>{categoria['catName']}</h1>
                             </div>
                         </div>
                         <div className="col-md-6">
@@ -24,15 +36,15 @@ export const Category = () => {
                 </div>
             </div>
             
-            <div className="mt-4 staggered-animation-wrap">
+            {/* <div className="mt-4 staggered-animation-wrap">
                 <div className="custom-container">
                     <div className="row">
                         <div className="col-lg-7 offset-lg-3">
-                            {catSeo == "laptops" ? 'asd' : 'qweqwqwe'}
+                            {cat_seo == "laptops" ? 'asd' : 'qweqwqwe'}
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 };

@@ -10,7 +10,7 @@
     border: 1px #d6d6d6 solid !important;
 }
 
-.banner_section.slide_medium,
+/* .banner_section.slide_medium,
 .banner_section.slide_medium .carousel-item,
 .banner_section.slide_medium .banner_content_wrap,
 .banner_section.slide_medium .banner_content_wrap .carousel-item,
@@ -18,5 +18,80 @@
 .banner_section.shop_el_slider .carousel-item,
 .banner_section.shop_el_slider .banner_content_wrap,
 .banner_section.shop_el_slider .banner_content_wrap .carousel-item {
-    height: 166px;
+    height: 200px;
+} */
+
+.banner_content3 h2 {
+    margin-bottom: 10px !important;
+}
+
+.rojisimo {
+    background-color: red !important;
+}
+
+.banner_section.slide_medium, 
+.banner_section.slide_medium .carousel-item, 
+.banner_section.slide_medium .banner_content_wrap, 
+.banner_section.slide_medium .banner_content_wrap .carousel-item,
+.banner_section.shop_el_slider, 
+.banner_section.shop_el_slider .carousel-item, 
+.banner_section.shop_el_slider .banner_content_wrap, 
+.banner_section.shop_el_slider .banner_content_wrap .carousel-item {
+	height: 260px;
+}
+
+@media only screen and (max-width: 1199px) {
+    .banner_section.slide_medium, 
+    .banner_section.slide_medium .carousel-item, 
+    .banner_section.slide_medium .banner_content_wrap, 
+    .banner_section.slide_medium .banner_content_wrap .carousel-item,
+    .banner_section.shop_el_slider, 
+    .banner_section.shop_el_slider .carousel-item, 
+    .banner_section.shop_el_slider .banner_content_wrap, 
+    .banner_section.shop_el_slider .banner_content_wrap .carousel-item {
+        height: 200px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .banner_section.slide_medium, 
+    .banner_section.slide_medium .carousel-item, 
+    .banner_section.slide_medium .banner_content_wrap, 
+    .banner_section.slide_medium .banner_content_wrap .carousel-item,
+    .banner_section.shop_el_slider, 
+    .banner_section.shop_el_slider .carousel-item, 
+    .banner_section.shop_el_slider .banner_content_wrap, 
+    .banner_section.shop_el_slider .banner_content_wrap .carousel-item {
+        height: 260px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .custom-card-index {
+        min-height: 391px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .custom-card-index {
+        min-height: 452px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .custom-card-index {
+        min-height: 521px;
+    }
+}
+
+.sub-section-custom {
+    padding-top: 30px !important;
+}
+
+.img-cat-prod {
+    padding: 20px;
+}
+
+.img-cat-prod:hover {
+    padding: 10px;
 }
