@@ -1,10 +1,48 @@
-import React from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { CartContext } from '../context/ShoppingCartContext';
 
 const Item = ({ prod }) => {
+    const { cartItems, addToCart } = useContext(CartContext);
+
     function formatToCurrency(amount) {
         return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     }
-    // console.log(prod);
+
+    // const id = prod.id;
+    // const price = prod.discount == 0 ? formatToCurrency(prod.normalPrice) : formatToCurrency(prod.normalPrice * ((100 - prod.discount) / 100));
+
+    // const addToCart = () => {
+    //     setCart((currItems) => {
+    //         const isItemFound = currItems.find((item) => item.id === id);
+    //         if (isItemFound) {
+    //             return currItems.map((item) => {
+    //                 if (item.id === id) {
+    //                     return { ...item, quantity: item.quantity + 1 };
+    //                 } else {
+    //                     return item;
+    //                 }
+    //             });
+    //         } else {
+    //             return [...currItems, { id, quantity: 1, price }];
+    //         }
+    //     });
+    // };
+
+    // const removeItem = (id) => {
+    //     setCart((currItems) => {
+    //         if (currItems.find((item) => item.id === id)?.quantity === 1) {
+    //             return currItems.filter((item) => item.id !== id);
+    //         } else {
+    //             return currItems.map((item) => {
+    //                 if (item.id === id) {
+    //                     return { ...item, quantity: item.quantity - 1 };
+    //                 } else {
+    //                     return item;
+    //                 }
+    //             });
+    //         }
+    //     });
+    // };
 
     if (Object.keys(prod).length == 0) {
         return <></>;
@@ -12,7 +50,6 @@ const Item = ({ prod }) => {
 
     return (
         <>
-            {/* <main> */}
             <div className="product">
                 <div className="product_img">
                     <a href={`/item/${prod.id}`}>
@@ -73,7 +110,7 @@ const Item = ({ prod }) => {
                     <div className="list_product_action_box">
                         <ul className="list_none pr_action_btn">
                             <li className="add-to-cart">
-                                <a href="#">
+                                <a href="#" onClick={() => addToCart(prod)}>
                                     <i className="icon-basket-loaded"></i> Agregar al Carrito
                                 </a>
                             </li>
@@ -96,7 +133,6 @@ const Item = ({ prod }) => {
                     </div>
                 </div>
             </div>
-            {/* </main> */}
         </>
     );
 };

@@ -4,6 +4,7 @@ const ItemDetail = ({ prodInfo, catInfo }) => {
     function filter(array, value, key) {
         return array.filter(key ? (a) => a[key] === value : (a) => Object.keys(a).some((k) => a[k] === value));
     }
+
     function formatToCurrency(amount) {
         return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     }
@@ -82,7 +83,7 @@ const ItemDetail = ({ prodInfo, catInfo }) => {
                                         </div>
                                     </div>
                                     <hr />
-                                    <ItemCount prodid={prodInfo.id} stock={prodInfo.stock} />
+                                    <ItemCount prodInfo={prodInfo} />
                                     {/* <div className="cart_extra">
                                         <div className="cart-product-quantity">
                                             <div className="quantity">

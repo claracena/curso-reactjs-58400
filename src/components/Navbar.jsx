@@ -1,6 +1,14 @@
+import { useContext, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
+import { CartContext } from '../context/ShoppingCartContext';
 
 const Navbar = () => {
+    // const [cart, setCart] = useContext(CartContext);
+
+    // const quantity = cart.reduce((acc, curr) => {
+    //     return acc + curr.quantity;
+    // }, 0);
+
     return (
         <>
             <header className="header_wrap fixed-top">
@@ -124,7 +132,7 @@ const Navbar = () => {
                                 <li className="dropdown cart_dropdown">
                                     <a className="nav-link cart_trigger" href="#" data-toggle="dropdown">
                                         <i className="linearicons-cart"></i>
-                                        <span className="cart_count">2</span>
+                                        <span className="cart_count">0</span>
                                     </a>
                                     <div className="cart_box dropdown-menu dropdown-menu-right">
                                         <ul className="cart_list">
@@ -173,7 +181,7 @@ const Navbar = () => {
                                                 159.00
                                             </p>
                                             <p className="cart_buttons">
-                                                <a href="#" className="btn btn-fill-line view-cart">
+                                                <a href="/cart" className="btn btn-fill-line view-cart">
                                                     Ver Carrito
                                                 </a>
                                                 <a href="#" className="btn btn-fill-out checkout">

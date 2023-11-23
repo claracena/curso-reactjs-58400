@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { LoadingContext } from '../components/LoadingContextProvider';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Home from '../pages/Home';

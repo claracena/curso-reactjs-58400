@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-export const ItemCount = ({ prodid, stock }) => {
+export const ItemCount = ({ prodInfo }) => {
     const [count, setCount] = useState(1);
 
     const decrement = () => {
@@ -8,7 +8,7 @@ export const ItemCount = ({ prodid, stock }) => {
     };
 
     const increment = () => {
-        count < stock ? setCount((count) => count + 1) : count;
+        count < prodInfo.stock ? setCount((count) => count + 1) : count;
     };
 
     return (
@@ -21,7 +21,7 @@ export const ItemCount = ({ prodid, stock }) => {
                 </div>
             </div>
             <div className="cart_btn">
-                <button className="btn btn-fill-out btn-addtocart" type="button">
+                <button onClick={() => addToCart(prodInfo, count)} className="btn btn-fill-out btn-addtocart" type="button">
                     <i className="icon-basket-loaded"></i> Agregar al carrito
                 </button>
                 <a className="add_wishlist" href="#">

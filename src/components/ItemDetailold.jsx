@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { LoadingContext } from '../components/LoadingContextProvider';
 import Preloader from '../components/Preloader';
 import { ItemCount } from './ItemCount';
 
