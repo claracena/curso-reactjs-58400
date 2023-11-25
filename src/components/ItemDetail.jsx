@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { ItemCount } from './ItemCount';
+import { CartContext } from '../context/ShoppingCartContext';
 
 const ItemDetail = ({ prodInfo, catInfo }) => {
     function filter(array, value, key) {
@@ -7,6 +9,15 @@ const ItemDetail = ({ prodInfo, catInfo }) => {
 
     function formatToCurrency(amount) {
         return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    }
+
+    function setPrice(price, pct, qty = 1) {
+        if (pct <= 0) {
+            return formatToCurrency(price * qty);
+        } else {
+            const percentage = (1 - pct / 100) * qty;
+            return formatToCurrency(price * percentage);
+        }
     }
 
     return (
@@ -59,12 +70,7 @@ const ItemDetail = ({ prodInfo, catInfo }) => {
                                             <a href="#">{prodInfo['name']}</a>
                                         </h4>
                                         <div className="product_price">
-                                            <span className="price">
-                                                $
-                                                {prodInfo.discount == 0
-                                                    ? formatToCurrency(prodInfo.normalPrice)
-                                                    : formatToCurrency(prodInfo.normalPrice * ((100 - prodInfo.discount) / 100))}
-                                            </span>
+                                            <span className="price">${setPrice(prodInfo.normalPrice, prodInfo.discount)}</span>
                                             {prodInfo.discount > 0 ? <del>${formatToCurrency(prodInfo.normalPrice)}</del> : null}
                                             {prodInfo.discount > 0 ? (
                                                 <div className="on_sale">
@@ -84,23 +90,6 @@ const ItemDetail = ({ prodInfo, catInfo }) => {
                                     </div>
                                     <hr />
                                     <ItemCount prodInfo={prodInfo} />
-                                    {/* <div className="cart_extra">
-                                        <div className="cart-product-quantity">
-                                            <div className="quantity">
-                                                <input type="button" defaultValue="-" className="minus" />
-                                                <input type="text" name="quantity" defaultValue="1" title="Qty" className="qty" size="4" />
-                                                <input type="button" defaultValue="+" className="plus" />
-                                            </div>
-                                        </div>
-                                        <div className="cart_btn">
-                                            <button className="btn btn-fill-out btn-addtocart" type="button">
-                                                <i className="icon-basket-loaded"></i> Agregar al Carrito
-                                            </button>
-                                            <a className="add_wishlist" href="#">
-                                                <i className="icon-heart"></i>
-                                            </a>
-                                        </div>
-                                    </div> */}
                                     <hr />
 
                                     <div className="product_share">

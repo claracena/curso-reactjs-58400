@@ -1,13 +1,3 @@
-// import React, { createContext, useState } from 'react';
-
-// export const CartContext = createContext(null);
-
-// export const ShoppingCartProvider = ({ children }) => {
-//     const [cart, setCart] = useState([]);
-
-//     return <CartContext.Provider value={[cart, setCart]}>{children}</CartContext.Provider>;
-// };
-
 import { createContext, useState, useEffect } from 'react';
 
 export const CartContext = createContext();
@@ -19,7 +9,16 @@ export const CartProvider = ({ children }) => {
         const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
 
         if (isItemInCart) {
-            setCartItems(cartItems.map((cartItem) => (cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem)));
+            setCartItems(
+                cartItems.map((cartItem) =>
+                    cartItem.id === item.id
+                        ? {
+                              ...cartItem,
+                              quantity: cartItem.stock > cartItem.quantity ? cartItem.quantity + 1 : (cartItem.quantity = cartItem.quantity),
+                          }
+                        : cartItem
+                )
+            );
         } else {
             setCartItems([...cartItems, { ...item, quantity: 1 }]);
         }
@@ -42,10 +41,14 @@ export const CartProvider = ({ children }) => {
     const getCartTotal = () => {
         return cartItems.reduce(
             (total, item) =>
-                total + (item.discount == 0 ? item.normalPrice * item.quantity : (item.discount / 100 + 1) * item.normalPrice * item.quantity),
+                total + (item.discount == 0 ? item.normalPrice * item.quantity : (1 - item.discount / 100) * item.normalPrice * item.quantity),
             0
         );
     };
+
+    // const getCartQty = () => {
+    //     return cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
+    // };
 
     useEffect(() => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -66,6 +69,7 @@ export const CartProvider = ({ children }) => {
                 removeFromCart,
                 clearCart,
                 getCartTotal,
+                // getCartQty,
             }}>
             {children}
         </CartContext.Provider>

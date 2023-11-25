@@ -1,13 +1,31 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { CartContext } from '../context/ShoppingCartContext';
 
 const Navbar = () => {
-    // const [cart, setCart] = useContext(CartContext);
+    const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext);
+    const [items, setItems] = useState([]);
 
-    // const quantity = cart.reduce((acc, curr) => {
-    //     return acc + curr.quantity;
-    // }, 0);
+    useEffect(() => {
+        setItems(cartItems);
+    }, [cartItems]);
+
+    let qty = cartItems.reduce((acc, curr) => {
+        return acc + curr.quantity;
+    }, 0);
+
+    function formatToCurrency(amount) {
+        return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    }
+
+    function setPrice(price, pct, qty = 1) {
+        if (pct <= 0) {
+            return formatToCurrency(price * qty);
+        } else {
+            const percentage = (pct / 100 + 1) * qty;
+            return formatToCurrency(price * percentage);
+        }
+    }
 
     return (
         <>
@@ -132,44 +150,26 @@ const Navbar = () => {
                                 <li className="dropdown cart_dropdown">
                                     <a className="nav-link cart_trigger" href="#" data-toggle="dropdown">
                                         <i className="linearicons-cart"></i>
-                                        <span className="cart_count">0</span>
+                                        <span className="cart_count">{qty}</span>
                                     </a>
                                     <div className="cart_box dropdown-menu dropdown-menu-right">
                                         <ul className="cart_list">
-                                            <li>
-                                                <a href="#" className="item_remove">
-                                                    <i className="ion-close"></i>
-                                                </a>
-                                                <a href="#">
-                                                    <img src="/src/assets/images/cart_thamb1.jpg" alt="cart_thumb1" />
-                                                    Variable product 001
-                                                </a>
-                                                <span className="cart_quantity">
-                                                    1 x{' '}
-                                                    <span className="cart_amount">
-                                                        {' '}
-                                                        <span className="price_symbole">$</span>
+                                            {cartItems.map((item) => (
+                                                <li key={item.id}>
+                                                    <a href={`/item/${item.id}`}>
+                                                        <img src={`../../src/assets/images/products/${item.img1}`} alt="cart_thumb1" />
+                                                        {item.name}
+                                                    </a>
+                                                    <span className="cart_quantity">
+                                                        {item.quantity} x{' '}
+                                                        <span className="cart_amount">
+                                                            {' '}
+                                                            <span className="price_symbole">$</span>
+                                                        </span>
+                                                        {setPrice(item.normalPrice, item.discount)}
                                                     </span>
-                                                    78.00
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <a href="#" className="item_remove">
-                                                    <i className="ion-close"></i>
-                                                </a>
-                                                <a href="#">
-                                                    <img src="/src/assets/images/cart_thamb2.jpg" alt="cart_thumb2" />
-                                                    Ornare sed consequat
-                                                </a>
-                                                <span className="cart_quantity">
-                                                    1 x{' '}
-                                                    <span className="cart_amount">
-                                                        {' '}
-                                                        <span className="price_symbole">$</span>
-                                                    </span>
-                                                    81.00
-                                                </span>
-                                            </li>
+                                                </li>
+                                            ))}
                                         </ul>
                                         <div className="cart_footer">
                                             <p className="cart_total">
@@ -178,15 +178,15 @@ const Navbar = () => {
                                                     {' '}
                                                     <span className="price_symbole">$</span>
                                                 </span>
-                                                159.00
+                                                {formatToCurrency(getCartTotal())}
                                             </p>
                                             <p className="cart_buttons">
                                                 <a href="/cart" className="btn btn-fill-line view-cart">
                                                     Ver Carrito
                                                 </a>
-                                                <a href="#" className="btn btn-fill-out checkout">
+                                                {/* <a href="#" className="btn btn-fill-out checkout">
                                                     Comprar
-                                                </a>
+                                                </a> */}
                                             </p>
                                         </div>
                                     </div>

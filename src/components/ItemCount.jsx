@@ -1,27 +1,34 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
+import { CartContext } from '../context/ShoppingCartContext';
+import { useNavigate } from 'react-router-dom';
 
 export const ItemCount = ({ prodInfo }) => {
-    const [count, setCount] = useState(1);
+    const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext);
 
-    const decrement = () => {
-        count > 1 ? setCount((count) => count - 1) : count;
-    };
+    function formatToCurrency(amount) {
+        return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    }
 
-    const increment = () => {
-        count < prodInfo.stock ? setCount((count) => count + 1) : count;
+    function setPrice(price, pct, qty = 1) {
+        if (pct <= 0) {
+            return formatToCurrency(price * qty);
+        } else {
+            const percentage = (1 - pct / 100) * qty;
+            return formatToCurrency(price * percentage);
+        }
+    }
+
+    let navigate = useNavigate();
+    const addAndRedirect = () => {
+        addToCart(prodInfo);
+        let path = `/cart`;
+        navigate(path);
     };
 
     return (
         <div className="cart_extra">
-            <div className="cart-product-quantity">
-                <div className="quantity">
-                    <input type="button" onClick={decrement} value="-" className="minus" />
-                    <input type="text" name="quantity" value={count} title="Qty" className="qty" size="4" readOnly />
-                    <input type="button" onClick={increment} value="+" className="plus" />
-                </div>
-            </div>
             <div className="cart_btn">
-                <button onClick={() => addToCart(prodInfo, count)} className="btn btn-fill-out btn-addtocart" type="button">
+                <button onClick={addAndRedirect} className="btn btn-fill-out btn-addtocart" type="button">
                     <i className="icon-basket-loaded"></i> Agregar al carrito
                 </button>
                 <a className="add_wishlist" href="#">

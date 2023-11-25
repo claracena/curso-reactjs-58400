@@ -8,6 +8,15 @@ export default function Cart() {
         return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     }
 
+    function setPrice(price, pct, qty = 1) {
+        if (pct <= 0) {
+            return formatToCurrency(price * qty);
+        } else {
+            const percentage = (pct / 100 + 1) * qty;
+            return formatToCurrency(price * percentage);
+        }
+    }
+
     return (
         <>
             <main>
@@ -32,7 +41,7 @@ export default function Cart() {
                         </div>
                     </div>
                 </div>
-                <div className="section">
+                <div className="section custom-section">
                     <div className="container">
                         <div className="row">
                             <div className="col-12">
@@ -52,18 +61,15 @@ export default function Cart() {
                                             {cartItems.map((item) => (
                                                 <tr key={item.id}>
                                                     <td className="product-thumbnail">
-                                                        <a href="#">
+                                                        <a href={`/item/${item.id}`}>
                                                             <img src={`../../src/assets/images/products/${item.img1}`} alt="product1" />
                                                         </a>
                                                     </td>
                                                     <td className="product-name" data-title="Product">
-                                                        <a href="#">{item.name}</a>
+                                                        <a href={`/item/${item.id}`}>{item.name}</a>
                                                     </td>
                                                     <td className="product-price" data-title="Price">
-                                                        $
-                                                        {formatToCurrency(
-                                                            item.discount == 0 ? item.normalPrice : (item.discount / 100 + 1) * item.normalPrice
-                                                        )}
+                                                        ${setPrice(item.normalPrice, item.discount, 1)}
                                                     </td>
                                                     <td className="product-quantity" data-title="Quantity">
                                                         <div className="quantity">
@@ -95,12 +101,7 @@ export default function Cart() {
                                                         </div>
                                                     </td>
                                                     <td className="product-subtotal" data-title="Total">
-                                                        $
-                                                        {formatToCurrency(
-                                                            item.discount == 0
-                                                                ? item.normalPrice * item.quantity
-                                                                : (item.discount / 100 + 1) * item.normalPrice * item.quantity
-                                                        )}
+                                                        ${setPrice(item.normalPrice, item.discount, item.quantity)}
                                                     </td>
                                                 </tr>
                                             ))}
@@ -146,60 +147,6 @@ export default function Cart() {
                             </div>
                         </div>
                         <div className="row">
-                            {/* <div className="col-md-6">
-                                <div className="heading_s1 mb-3">
-                                    <h6>Calculate Shipping</h6>
-                                </div>
-                                <form className="field_form shipping_calculator">
-                                    <div className="form-row">
-                                        <div className="form-group col-lg-12">
-                                            <div className="custom_select">
-                                                <select className="form-control">
-                                                    <option value="">Choose a option...</option>
-                                                    <option value="AX">Aland Islands</option>
-                                                    <option value="AF">Afghanistan</option>
-                                                    <option value="AL">Albania</option>
-                                                    <option value="DZ">Algeria</option>
-                                                    <option value="AD">Andorra</option>
-                                                    <option value="AO">Angola</option>
-                                                    <option value="AI">Anguilla</option>
-                                                    <option value="AQ">Antarctica</option>
-                                                    <option value="AG">Antigua and Barbuda</option>
-                                                    <option value="AR">Argentina</option>
-                                                    <option value="AM">Armenia</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form-row">
-                                        <div className="form-group col-lg-6">
-                                            <input
-                                                required="required"
-                                                placeholder="State / Country"
-                                                className="form-control"
-                                                name="name"
-                                                type="text"
-                                            />
-                                        </div>
-                                        <div className="form-group col-lg-6">
-                                            <input
-                                                required="required"
-                                                placeholder="PostCode / ZIP"
-                                                className="form-control"
-                                                name="name"
-                                                type="text"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="form-row">
-                                        <div className="form-group col-lg-12">
-                                            <button className="btn btn-fill-line" type="submit">
-                                                Update Totals
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div> */}
                             <div className="col-md-12">
                                 <div className="border p-3 p-md-4">
                                     <div className="heading_s1 mb-3">

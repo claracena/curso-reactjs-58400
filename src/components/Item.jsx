@@ -1,52 +1,33 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { CartContext } from '../context/ShoppingCartContext';
+import { useNavigate } from 'react-router-dom';
 
 const Item = ({ prod }) => {
-    const { cartItems, addToCart } = useContext(CartContext);
+    const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext);
 
     function formatToCurrency(amount) {
         return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     }
 
-    // const id = prod.id;
-    // const price = prod.discount == 0 ? formatToCurrency(prod.normalPrice) : formatToCurrency(prod.normalPrice * ((100 - prod.discount) / 100));
-
-    // const addToCart = () => {
-    //     setCart((currItems) => {
-    //         const isItemFound = currItems.find((item) => item.id === id);
-    //         if (isItemFound) {
-    //             return currItems.map((item) => {
-    //                 if (item.id === id) {
-    //                     return { ...item, quantity: item.quantity + 1 };
-    //                 } else {
-    //                     return item;
-    //                 }
-    //             });
-    //         } else {
-    //             return [...currItems, { id, quantity: 1, price }];
-    //         }
-    //     });
-    // };
-
-    // const removeItem = (id) => {
-    //     setCart((currItems) => {
-    //         if (currItems.find((item) => item.id === id)?.quantity === 1) {
-    //             return currItems.filter((item) => item.id !== id);
-    //         } else {
-    //             return currItems.map((item) => {
-    //                 if (item.id === id) {
-    //                     return { ...item, quantity: item.quantity - 1 };
-    //                 } else {
-    //                     return item;
-    //                 }
-    //             });
-    //         }
-    //     });
-    // };
+    function setPrice(price, pct, qty = 1) {
+        if (pct <= 0) {
+            return formatToCurrency(price * qty);
+        } else {
+            const percentage = (1 - pct / 100) * qty;
+            return formatToCurrency(price * percentage);
+        }
+    }
 
     if (Object.keys(prod).length == 0) {
         return <></>;
     }
+
+    let navigate = useNavigate();
+    const addAndRedirect = () => {
+        addToCart(prod);
+        let path = `/cart`;
+        navigate(path);
+    };
 
     return (
         <>
@@ -85,12 +66,7 @@ const Item = ({ prod }) => {
                         <a href={`/item/${prod.id}`}>{prod.name}</a>
                     </h6>
                     <div className="product_price">
-                        <span className="price">
-                            $
-                            {prod.discount == 0
-                                ? formatToCurrency(prod.normalPrice)
-                                : formatToCurrency(prod.normalPrice * ((100 - prod.discount) / 100))}
-                        </span>
+                        <span className="price">${setPrice(prod.normalPrice, prod.discount)}</span>
                         {prod.discount > 0 ? <del>${formatToCurrency(prod.normalPrice)}</del> : null}
                         {prod.discount > 0 ? (
                             <div className="on_sale">
@@ -110,7 +86,7 @@ const Item = ({ prod }) => {
                     <div className="list_product_action_box">
                         <ul className="list_none pr_action_btn">
                             <li className="add-to-cart">
-                                <a href="#" onClick={() => addToCart(prod)}>
+                                <a href="#" onClick={addAndRedirect}>
                                     <i className="icon-basket-loaded"></i> Agregar al Carrito
                                 </a>
                             </li>
