@@ -4,7 +4,7 @@ import Preloader from '../components/Preloader';
 import { ItemCount } from './ItemCount';
 
 const ItemDetail = ({ prod_info, cat_info }) => {
-    console.log('prod_info');
+    // console.log('prod_info');
 
     function formatToCurrency(amount) {
         return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');

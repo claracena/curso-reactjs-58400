@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 const Item = ({ prod }) => {
     const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext);
 
+    // console.log(prod);
+
     function formatToCurrency(amount) {
         return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     }
@@ -18,16 +20,16 @@ const Item = ({ prod }) => {
         }
     }
 
-    if (Object.keys(prod).length == 0) {
-        return <></>;
-    }
-
     let navigate = useNavigate();
     const addAndRedirect = () => {
         addToCart(prod);
         let path = `/cart`;
         navigate(path);
     };
+
+    if (Object.keys(prod).length == 0) {
+        return <></>;
+    }
 
     return (
         <>

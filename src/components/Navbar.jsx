@@ -22,13 +22,20 @@ const Navbar = () => {
         if (pct <= 0) {
             return formatToCurrency(price * qty);
         } else {
-            const percentage = (pct / 100 + 1) * qty;
+            const percentage = (1 - pct / 100) * qty;
             return formatToCurrency(price * percentage);
         }
     }
 
     return (
         <>
+            <div class="preloader">
+                <div class="lds-ellipsis">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
             <header className="header_wrap fixed-top">
                 <div className="bottom_header dark_skin main_menu_uppercase">
                     <div className="container">
@@ -154,7 +161,7 @@ const Navbar = () => {
                                     </a>
                                     <div className="cart_box dropdown-menu dropdown-menu-right">
                                         <ul className="cart_list">
-                                            {cartItems.map((item) => (
+                                            {items.map((item) => (
                                                 <li key={item.id}>
                                                     <a href={`/item/${item.id}`}>
                                                         <img src={`../../src/assets/images/products/${item.img1}`} alt="cart_thumb1" />

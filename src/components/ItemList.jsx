@@ -6,6 +6,8 @@ const ItemList = ({ prod_list, cat_info }) => {
         return <></>;
     }
 
+    // console.log(cat_info[0]['catName']);
+
     return (
         <>
             <main>

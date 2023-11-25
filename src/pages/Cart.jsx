@@ -12,7 +12,7 @@ export default function Cart() {
         if (pct <= 0) {
             return formatToCurrency(price * qty);
         } else {
-            const percentage = (pct / 100 + 1) * qty;
+            const percentage = (1 - pct / 100) * qty;
             return formatToCurrency(price * percentage);
         }
     }
@@ -58,6 +58,7 @@ export default function Cart() {
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {/* {console.log(cartItems)} */}
                                             {cartItems.map((item) => (
                                                 <tr key={item.id}>
                                                     <td className="product-thumbnail">
