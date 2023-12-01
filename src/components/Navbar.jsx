@@ -29,8 +29,8 @@ const Navbar = () => {
 
     return (
         <>
-            <div class="preloader">
-                <div class="lds-ellipsis">
+            <div className="preloader">
+                <div className="lds-ellipsis">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -75,7 +75,7 @@ const Navbar = () => {
                                             <ul>
                                                 <li>
                                                     <NavLink
-                                                        to="/category/1"
+                                                        to="/category/jw4pk8Xa2qEn8lvXMhHT"
                                                         className={({ isActive }) =>
                                                             isActive ? 'dropdown-item nav-link nav_item active' : 'dropdown-item nav-link nav_item'
                                                         }>
@@ -87,7 +87,7 @@ const Navbar = () => {
                                                 </li>
                                                 <li>
                                                     <NavLink
-                                                        to="/category/2"
+                                                        to="/category/9YyML7TYCSY0bReYeHDb"
                                                         className={({ isActive }) =>
                                                             isActive ? 'dropdown-item nav-link nav_item active' : 'dropdown-item nav-link nav_item'
                                                         }>
@@ -99,19 +99,7 @@ const Navbar = () => {
                                                 </li>
                                                 <li>
                                                     <NavLink
-                                                        to="/category/3"
-                                                        className={({ isActive }) =>
-                                                            isActive ? 'dropdown-item nav-link nav_item active' : 'dropdown-item nav-link nav_item'
-                                                        }>
-                                                        Tablets
-                                                    </NavLink>
-                                                    {/* <a className="dropdown-item nav-link nav_item" href="/category/3">
-                                                        Tablets
-                                                    </a> */}
-                                                </li>
-                                                <li>
-                                                    <NavLink
-                                                        to="/category/4"
+                                                        to="/category/N44JMqrcCm9zPxKz2YzW"
                                                         className={({ isActive }) =>
                                                             isActive ? 'dropdown-item nav-link nav_item active' : 'dropdown-item nav-link nav_item'
                                                         }>
@@ -119,6 +107,18 @@ const Navbar = () => {
                                                     </NavLink>
                                                     {/* <a className="dropdown-item nav-link nav_item" href="/category/4">
                                                         Accesorios
+                                                    </a> */}
+                                                </li>
+                                                <li>
+                                                    <NavLink
+                                                        to="/category/ZKqN0TkcHRKgloUH9aJ7"
+                                                        className={({ isActive }) =>
+                                                            isActive ? 'dropdown-item nav-link nav_item active' : 'dropdown-item nav-link nav_item'
+                                                        }>
+                                                        Tablets
+                                                    </NavLink>
+                                                    {/* <a className="dropdown-item nav-link nav_item" href="/category/3">
+                                                        Tablets
                                                     </a> */}
                                                 </li>
                                             </ul>

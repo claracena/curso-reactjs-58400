@@ -5,6 +5,9 @@ import Footer from './components/Footer';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import { useEffect } from 'react';
+import { OrderCompleted } from './pages/OrderCompleted';
 
 function App() {
     const modal = false;
@@ -20,6 +23,8 @@ function App() {
                 <Route path="/item" element={<ItemDetailContainer />} />
                 <Route path="/item/:itemId" element={<ItemDetailContainer />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/checkout/:code" element={<OrderCompleted />} />
             </Routes>
             <Footer />
         </BrowserRouter>

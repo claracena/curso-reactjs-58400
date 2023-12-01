@@ -109,7 +109,7 @@ export default function Cart() {
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colSpan="4" className="px-0">
+                                                <td colSpan="12" className="px-0">
                                                     <div className="row no-gutters align-items-center">
                                                         <div className="col-md-12 text-left text-md-right">
                                                             <button
@@ -119,15 +119,6 @@ export default function Cart() {
                                                                 }}
                                                                 type="submit">
                                                                 Vaciar Carrito
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td colSpan="8" className="px-0">
-                                                    <div className="row no-gutters align-items-center">
-                                                        <div className="col-md-12 text-left text-md-right">
-                                                            <button className="btn btn-line-fill btn-sm" type="submit">
-                                                                Update Cart
                                                             </button>
                                                         </div>
                                                     </div>
@@ -173,7 +164,7 @@ export default function Cart() {
                                             </tbody>
                                         </table>
                                     </div>
-                                    <a href="#" className="btn btn-fill-out">
+                                    <a href="/checkout" className="btn btn-fill-out">
                                         Finalizar Compra
                                     </a>
                                 </div>

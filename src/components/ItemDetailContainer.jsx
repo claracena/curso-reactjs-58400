@@ -25,57 +25,6 @@ const ItemDetailContainer = () => {
                 setCatFilteredId(resData.catId);
             })
             .catch((error) => console.log(error));
-
-        // setCatFilteredId(prodData.catId);
-
-        // console.log(catFilteredId);
-
-        // if (catFilteredId) {
-        //     console.log(catFilteredId);
-        //     const myCat = doc(db, 'categories', catFilteredId);
-
-        //     getDoc(myCat)
-        //         .then((res) => {
-        //             const resData = res.data();
-        //             setCatData(resData);
-        //         })
-        //         .catch((error) => console.log(error));
-        // }
-
-        // const myProduct = query(collection(db, 'products'), where('id', '===', itemId));
-
-        // getDocs(myCategories)
-        //     .then((resp) => {
-        //         const catList = resp.docs.map((doc) => ({ catId: doc.id, ...doc.data() }));
-        //         setCatData(catList);
-        //     })
-        //     .catch((error) => console.log(error));
-
-        // getDocs(myProduct)
-        //     .then((resp) => {
-        //         const prod = resp.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        //         setProdData(prod);
-        //     })
-        //     .catch((error) => console.log(error));
-
-        // const myCategories = query(collection(db, 'categories'));
-        // const getData = () => {
-        //     fetch('/data.json', {
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             Accept: 'application/json',
-        //         },
-        //     })
-        //         .then(function (response) {
-        //             return response.json();
-        //         })
-        //         .then(function (myJson) {
-        //             const tmp_prodData = myJson['products'].find((c) => c.id == itemId);
-        //             setProdData(tmp_prodData);
-        //             setCatData(myJson['categories'].find((c) => c.catId == tmp_prodData.catId));
-        //         });
-        // };
-        // getData();
     }, []);
 
     useEffect(() => {
@@ -84,12 +33,12 @@ const ItemDetailContainer = () => {
 
             getDoc(myCat)
                 .then((res) => {
-                    const resData = res.data();
+                    const resData = { catId: res.id, ...res.data() };
                     setCatData(resData);
                 })
                 .catch((error) => console.log(error));
         }
-    }, []);
+    }, [catFilteredId]);
 
     if (prodData === null || catData === null || prodData === undefined || catData === undefined) {
         return null;

@@ -4,6 +4,7 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []);
+    const [itemQtyInCart, setItemQtyInCart] = useState(1);
 
     const addToCart = (item) => {
         const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
@@ -21,6 +22,37 @@ export const CartProvider = ({ children }) => {
             );
         } else {
             setCartItems([...cartItems, { ...item, quantity: 1 }]);
+        }
+    };
+
+    const addToCartQty = (item, qty) => {
+        const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
+
+        if (isItemInCart) {
+            setCartItems(
+                cartItems.map((cartItem) =>
+                    cartItem.id === item.id
+                        ? // ? {
+                          //     ...cartItem,
+                          //     quantity: cartItem.stock > cartItem.quantity + qty ? cartItem.quantity + qty : (cartItem.quantity = cartItem.quantity),
+                          // }
+                          {
+                              ...cartItem,
+                              quantity: cartItem.stock >= qty ? qty : (cartItem.quantity = cartItem.quantity),
+                          }
+                        : cartItem
+                )
+            );
+        } else {
+            setCartItems([...cartItems, { ...item, quantity: qty }]);
+        }
+    };
+
+    const completelyRemoveFromCart = (item) => {
+        const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
+
+        if (isItemInCart) {
+            setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
         }
     };
 
@@ -46,9 +78,18 @@ export const CartProvider = ({ children }) => {
         );
     };
 
-    // const getCartQty = () => {
-    //     return cartItems.reduce((acc, curr) => acc + curr.quantity, 0);
-    // };
+    const getItemInCart = (item) => {
+        const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
+
+        if (isItemInCart) {
+            setItemQtyInCart(isItemInCart.quantity);
+        } else {
+            setItemQtyInCart(0);
+        }
+
+        // console.log(itemQtyInCart);
+        return itemQtyInCart;
+    };
 
     useEffect(() => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -66,9 +107,12 @@ export const CartProvider = ({ children }) => {
             value={{
                 cartItems,
                 addToCart,
+                addToCartQty,
                 removeFromCart,
+                completelyRemoveFromCart,
                 clearCart,
                 getCartTotal,
+                getItemInCart,
                 // getCartQty,
             }}>
             {children}

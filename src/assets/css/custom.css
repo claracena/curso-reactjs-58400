@@ -61,3 +61,9 @@
 .custom-section {
     padding: 50px 0 !important;
 }
+
+.custom-tracking-number {
+    color: rgb(204, 42, 42);
+    font-weight: bold;
+    /* text-decoration: underline; */
+}

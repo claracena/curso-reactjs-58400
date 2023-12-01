@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Home from '../pages/Home';
 import ItemList from './ItemList';
-import { collection, getDocs, getFirestore, query } from 'firebase/firestore';
+import { collection, getDocs, getFirestore, query, orderBy } from 'firebase/firestore';
 
 const ItemListContainer = () => {
     const { catId } = useParams();
@@ -15,7 +15,7 @@ const ItemListContainer = () => {
 
     useEffect(() => {
         const db = getFirestore();
-        const myCategories = query(collection(db, 'categories'));
+        const myCategories = query(collection(db, 'categories'), orderBy('order', 'asc'));
 
         getDocs(myCategories)
             .then((resp) => {
