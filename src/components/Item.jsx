@@ -3,9 +3,7 @@ import { CartContext } from '../context/ShoppingCartContext';
 import { useNavigate } from 'react-router-dom';
 
 const Item = ({ prod }) => {
-    const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext);
-
-    // console.log(prod);
+    const { addToCart } = useContext(CartContext);
 
     function formatToCurrency(amount) {
         return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');

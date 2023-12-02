@@ -1,6 +1,4 @@
-import { useContext } from 'react';
 import { ItemCount } from './ItemCount';
-import { CartContext } from '../context/ShoppingCartContext';
 
 const ItemDetail = ({ prodInfo, catInfo }) => {
     function filter(array, value, key) {

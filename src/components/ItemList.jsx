@@ -1,12 +1,9 @@
-import React, { useContext, useEffect } from 'react';
 import Item from './Item';
 
 const ItemList = ({ prod_list, cat_info }) => {
     if (Object.keys(prod_list).length == 0 || Object.keys(cat_info).length == 0) {
         return <></>;
     }
-
-    // console.log(cat_info[0]['catName']);
 
     return (
         <>

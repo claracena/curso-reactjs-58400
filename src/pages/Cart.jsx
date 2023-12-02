@@ -54,11 +54,9 @@ export default function Cart() {
                                                 <th className="product-price">Precio</th>
                                                 <th className="product-quantity">Cantidad</th>
                                                 <th className="product-subtotal">Total</th>
-                                                {/* <th className="product-remove">Remover</th> */}
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {/* {console.log(cartItems)} */}
                                             {cartItems.map((item) => (
                                                 <tr key={item.id}>
                                                     <td className="product-thumbnail">
@@ -164,7 +162,10 @@ export default function Cart() {
                                             </tbody>
                                         </table>
                                     </div>
-                                    <a href="/checkout" className="btn btn-fill-out">
+                                    <a
+                                        href="/checkout"
+                                        className="btn btn-fill-out"
+                                        style={{ pointerEvents: Object.keys(cartItems).length == 0 ? 'none' : 'auto' }}>
                                         Finalizar Compra
                                     </a>
                                 </div>

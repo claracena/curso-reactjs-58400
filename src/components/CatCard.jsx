@@ -1,5 +1,4 @@
 import { useId } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
 
 const CatCard = ({ cat_info }) => {
     const id = useId();

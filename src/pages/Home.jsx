@@ -1,6 +1,3 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Preloader from '../components/Preloader';
-
 const Home = ({ categories }) => {
     return (
         <>

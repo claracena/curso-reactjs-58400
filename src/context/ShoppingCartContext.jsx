@@ -32,11 +32,7 @@ export const CartProvider = ({ children }) => {
             setCartItems(
                 cartItems.map((cartItem) =>
                     cartItem.id === item.id
-                        ? // ? {
-                          //     ...cartItem,
-                          //     quantity: cartItem.stock > cartItem.quantity + qty ? cartItem.quantity + qty : (cartItem.quantity = cartItem.quantity),
-                          // }
-                          {
+                        ? {
                               ...cartItem,
                               quantity: cartItem.stock >= qty ? qty : (cartItem.quantity = cartItem.quantity),
                           }
@@ -87,7 +83,6 @@ export const CartProvider = ({ children }) => {
             setItemQtyInCart(0);
         }
 
-        // console.log(itemQtyInCart);
         return itemQtyInCart;
     };
 
@@ -113,7 +108,6 @@ export const CartProvider = ({ children }) => {
                 clearCart,
                 getCartTotal,
                 getItemInCart,
-                // getCartQty,
             }}>
             {children}
         </CartContext.Provider>

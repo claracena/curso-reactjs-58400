@@ -6,7 +6,6 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
-import { useEffect } from 'react';
 import { OrderCompleted } from './pages/OrderCompleted';
 
 function App() {

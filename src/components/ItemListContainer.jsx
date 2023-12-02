@@ -32,32 +32,11 @@ const ItemListContainer = () => {
                 setProdData(prodList);
             })
             .catch((error) => console.log(error));
-
-        // const getData = () => {
-        //     fetch('/data.json', {
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             Accept: 'application/json',
-        //         },
-        //     })
-        //         .then(function (response) {
-        //             return response.json();
-        //         })
-        //         .then(function (myJson) {
-        //             setCatData(myJson.categories);
-        //             setProdData(myJson.products);
-        //         });
-        // };
-        // getData();
     }, []);
-
-    // console.log(catData);
-    // console.log(prodData);
 
     if (catId !== undefined) {
         const prod_list = filter(prodData, catId, 'catId');
         const cat_info = filter(catData, catId, 'catId');
-        // console.log(cat_info);
         return <ItemList prod_list={prod_list} cat_info={cat_info} />;
     } else {
         return catData ? <Home categories={catData} /> : null;

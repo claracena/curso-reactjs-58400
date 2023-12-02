@@ -1,9 +1,9 @@
 import { useContext, useState, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { CartContext } from '../context/ShoppingCartContext';
 
 const Navbar = () => {
-    const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext);
+    const { cartItems, getCartTotal } = useContext(CartContext);
     const [items, setItems] = useState([]);
 
     useEffect(() => {
@@ -62,9 +62,6 @@ const Navbar = () => {
                                         </NavLink>
                                     </li>
                                     <li className="dropdown">
-                                        {/* <a className="dropdown-toggle nav-link" href="/category" data-toggle="dropdown">
-                                            Categor&iacute;as
-                                        </a> */}
                                         <NavLink
                                             to="/category"
                                             className={({ isActive }) => (isActive ? 'dropdown-toggle nav-link active' : 'dropdown-toggle nav-link')}
@@ -81,9 +78,6 @@ const Navbar = () => {
                                                         }>
                                                         Laptops
                                                     </NavLink>
-                                                    {/* <a className="dropdown-item nav-link nav_item" href="/category/1">
-                                                        Laptops
-                                                    </a> */}
                                                 </li>
                                                 <li>
                                                     <NavLink
@@ -93,9 +87,6 @@ const Navbar = () => {
                                                         }>
                                                         Smartphones
                                                     </NavLink>
-                                                    {/* <a className="dropdown-item nav-link nav_item" href="/category/2">
-                                                        Smartphones
-                                                    </a> */}
                                                 </li>
                                                 <li>
                                                     <NavLink
@@ -105,9 +96,6 @@ const Navbar = () => {
                                                         }>
                                                         Accesorios
                                                     </NavLink>
-                                                    {/* <a className="dropdown-item nav-link nav_item" href="/category/4">
-                                                        Accesorios
-                                                    </a> */}
                                                 </li>
                                                 <li>
                                                     <NavLink
@@ -117,9 +105,6 @@ const Navbar = () => {
                                                         }>
                                                         Tablets
                                                     </NavLink>
-                                                    {/* <a className="dropdown-item nav-link nav_item" href="/category/3">
-                                                        Tablets
-                                                    </a> */}
                                                 </li>
                                             </ul>
                                         </div>
@@ -191,9 +176,6 @@ const Navbar = () => {
                                                 <a href="/cart" className="btn btn-fill-line view-cart">
                                                     Ver Carrito
                                                 </a>
-                                                {/* <a href="#" className="btn btn-fill-out checkout">
-                                                    Comprar
-                                                </a> */}
                                             </p>
                                         </div>
                                     </div>

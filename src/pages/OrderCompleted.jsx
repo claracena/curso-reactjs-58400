@@ -1,15 +1,11 @@
-import { useContext } from 'react';
-import { CartContext } from '../context/ShoppingCartContext';
 import { useParams } from 'react-router-dom';
 import Checkout from './Checkout';
 
 export const OrderCompleted = () => {
-    const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext);
     const { code } = useParams();
     if (!code) {
         return <Checkout />;
     } else {
-        clearCart();
         return (
             <>
                 <main>

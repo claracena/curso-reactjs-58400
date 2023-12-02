@@ -1,10 +1,12 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '../context/ShoppingCartContext';
-import { collection, addDoc, getFirestore, updateDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, getFirestore } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 export default function Checkout() {
-    const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext);
+    const { cartItems, clearCart, getCartTotal } = useContext(CartContext);
+    const [fname, setFname] = useState('');
+    const [email, setEmail] = useState('');
 
     function formatToCurrency(amount) {
         return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
@@ -21,9 +23,8 @@ export default function Checkout() {
 
     const db = getFirestore();
 
-    // console.log(cartItems);
-
     let prodList = {};
+    let myTotal = 0;
     for (let i = 0; i < cartItems.length; i++) {
         let n = i + 1;
         prodList['item_' + n] = {
@@ -32,6 +33,7 @@ export default function Checkout() {
             price: setPrice(cartItems[i].normalPrice, cartItems[i].discount),
             qty: cartItems[i].quantity,
         };
+        myTotal = myTotal + setPrice(cartItems[i].normalPrice, cartItems[i].discount) * cartItems[i].quantity;
     }
 
     let navigate = useNavigate();
@@ -47,10 +49,15 @@ export default function Checkout() {
             const docRef = await addDoc(collection(db, 'purchases'), {
                 userId: 1,
                 dateTime: new Date().getTime(),
+                name: fname,
+                email: email,
                 items: prodList,
+                total: myTotal,
             });
-            redirect(docRef.id);
-            // console.log('Document written with ID: ', docRef.id);
+            if (docRef.id) {
+                clearCart();
+                redirect(docRef.id);
+            }
         } catch (e) {
             console.error('Error al agregar el documento: ', e);
         }
@@ -178,9 +185,17 @@ export default function Checkout() {
                                 </div>
                                 <form method="post">
                                     <div className="form-group">
-                                        <input type="text" required className="form-control" name="fname" placeholder="Nombre *" />
+                                        <input
+                                            type="text"
+                                            required
+                                            className="form-control"
+                                            name="fname"
+                                            value={fname}
+                                            onChange={(e) => setFname(e.target.value)}
+                                            placeholder="Nombre (no obligatorio)"
+                                        />
                                     </div>
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <input type="text" required className="form-control" name="lname" placeholder="Apellido *" />
                                     </div>
                                     <div className="form-group">
@@ -245,17 +260,22 @@ export default function Checkout() {
                                     </div>
                                     <div className="form-group">
                                         <input className="form-control" required type="text" name="phone" placeholder="Teléfono *" />
-                                    </div>
+                                    </div> */}
                                     <div className="form-group">
-                                        <input className="form-control" required type="text" name="email" placeholder="Email *" />
+                                        <input
+                                            className="form-control"
+                                            required
+                                            type="text"
+                                            name="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            placeholder="Email (no obligatorio)"
+                                        />
                                     </div>
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <div className="chek-form">
                                             <div className="custome-checkbox">
-                                                {/* <input className="form-check-input" type="checkbox" name="checkbox" id="createaccount" /> */}
-                                                {/* <label className="form-check-label label_info" htmlFor="createaccount"> */}
                                                 <span>Ingrese una contrase&ntilde;a para asociar a su nueva cuenta</span>
-                                                {/* </label> */}
                                             </div>
                                         </div>
                                     </div>
@@ -270,7 +290,7 @@ export default function Checkout() {
                                             rows="5"
                                             className="form-control"
                                             placeholder="Agregue cualquier nota que considere necesaria"></textarea>
-                                    </div>
+                                    </div> */}
                                 </form>
                             </div>
                             <div className="col-md-6">
@@ -357,7 +377,11 @@ export default function Checkout() {
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#" onClick={finalize} className="btn btn-fill-out btn-block">
+                                    <a
+                                        href="#"
+                                        onClick={finalize}
+                                        className="btn btn-fill-out btn-block"
+                                        style={{ pointerEvents: Object.keys(cartItems).length == 0 ? 'none' : 'auto' }}>
                                         Finalizar Compra
                                     </a>
                                 </div>
